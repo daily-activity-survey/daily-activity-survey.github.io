@@ -33,8 +33,8 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet-measure.js"></script>
         <script src="data/LineJarak_2.js"></script>
-        <script src="data/LoadingPoint_3.js"></script>
-        <script src="data/FixDistance_4.js"></script>
+        <script src="data/FixDistance_3.js"></script>
+        <script src="data/LoadingPoint_4.js"></script>
         <script src="data/AktifitasSurveyW3_5.js"></script>
         <script src="data/Design_Juli_r0_6.js"></script>
         <script>
@@ -45,7 +45,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-2.9473259180310696,115.21956804200404],[-2.9274539585205375,115.25155762306133]]);
+        }).fitBounds([[-2.944941582116217,115.22300755745631],[-2.9250697247910655,115.25499704428856]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -150,137 +150,7 @@
         });
         bounds_group.addLayer(layer_LineJarak_2);
         map.addLayer(layer_LineJarak_2);
-        function pop_LoadingPoint_3(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">Easting</th>\
-                        <td>' + (feature.properties['x'] !== null ? autolinker.link(feature.properties['x'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Northing</th>\
-                        <td>' + (feature.properties['y'] !== null ? autolinker.link(feature.properties['y'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Elevation</th>\
-                        <td>' + (feature.properties['z'] !== null ? autolinker.link(feature.properties['z'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Request Level</th>\
-                        <td>' + (feature.properties['RL'] !== null ? autolinker.link(feature.properties['RL'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Keterangan</th>\
-                        <td>' + (feature.properties['Keterangan'] !== null ? autolinker.link(feature.properties['Keterangan'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Nama Louder</th>\
-                        <td>' + (feature.properties['HEX'] !== null ? autolinker.link(feature.properties['HEX'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Posisi Fleet</th>\
-                        <td>' + (feature.properties['Posisi'] !== null ? autolinker.link(feature.properties['Posisi'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Lokasi Dumping</th>\
-                        <td>' + (feature.properties['Dumping'] !== null ? autolinker.link(feature.properties['Dumping'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Jarak Angkut</th>\
-                        <td>' + (feature.properties['Jarak'] !== null ? autolinker.link(feature.properties['Jarak'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Material</th>\
-                        <td>' + (feature.properties['Material'] !== null ? autolinker.link(feature.properties['Material'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_LoadingPoint_3_0(feature) {
-            switch(String(feature.properties['Keterangan'])) {
-                case 'Cut':
-                    return {
-                pane: 'pane_LoadingPoint_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,255,255,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'Ongrade':
-                    return {
-                pane: 'pane_LoadingPoint_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(251,251,16,1.0)',
-                interactive: true,
-            }
-                    break;
-                default:
-                    return {
-                pane: 'pane_LoadingPoint_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(209,216,118,1.0)',
-                interactive: true,
-            }
-                    break;
-            }
-        }
-        map.createPane('pane_LoadingPoint_3');
-        map.getPane('pane_LoadingPoint_3').style.zIndex = 403;
-        map.getPane('pane_LoadingPoint_3').style['mix-blend-mode'] = 'normal';
-        var layer_LoadingPoint_3 = new L.geoJson(json_LoadingPoint_3, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_LoadingPoint_3',
-            layerName: 'layer_LoadingPoint_3',
-            pane: 'pane_LoadingPoint_3',
-            onEachFeature: pop_LoadingPoint_3,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.circleMarker(latlng, style_LoadingPoint_3_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_LoadingPoint_3);
-        map.addLayer(layer_LoadingPoint_3);
-        function pop_FixDistance_4(feature, layer) {
+        function pop_FixDistance_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     if (typeof layer.closePopup == 'function') {
@@ -318,11 +188,11 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_FixDistance_4_0(feature) {
+        function style_FixDistance_3_0(feature) {
             switch(String(feature.properties['Nama'])) {
                 case '<8%':
                     return {
-                pane: 'pane_FixDistance_4',
+                pane: 'pane_FixDistance_3',
                 opacity: 1,
                 color: 'rgba(84,176,74,1.0)',
                 dashArray: '',
@@ -335,7 +205,7 @@
                     break;
                 case '>9%':
                     return {
-                pane: 'pane_FixDistance_4',
+                pane: 'pane_FixDistance_3',
                 opacity: 1,
                 color: 'rgba(227,26,28,1.0)',
                 dashArray: '',
@@ -348,7 +218,7 @@
                     break;
                 case '8 - 9%':
                     return {
-                pane: 'pane_FixDistance_4',
+                pane: 'pane_FixDistance_3',
                 opacity: 1,
                 color: 'rgba(251,251,16,1.0)',
                 dashArray: '',
@@ -361,7 +231,7 @@
                     break;
                 default:
                     return {
-                pane: 'pane_FixDistance_4',
+                pane: 'pane_FixDistance_3',
                 opacity: 1,
                 color: 'rgba(237,195,131,1.0)',
                 dashArray: '',
@@ -374,20 +244,166 @@
                     break;
             }
         }
-        map.createPane('pane_FixDistance_4');
-        map.getPane('pane_FixDistance_4').style.zIndex = 404;
-        map.getPane('pane_FixDistance_4').style['mix-blend-mode'] = 'normal';
-        var layer_FixDistance_4 = new L.geoJson(json_FixDistance_4, {
+        map.createPane('pane_FixDistance_3');
+        map.getPane('pane_FixDistance_3').style.zIndex = 403;
+        map.getPane('pane_FixDistance_3').style['mix-blend-mode'] = 'normal';
+        var layer_FixDistance_3 = new L.geoJson(json_FixDistance_3, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_FixDistance_4',
-            layerName: 'layer_FixDistance_4',
-            pane: 'pane_FixDistance_4',
-            onEachFeature: pop_FixDistance_4,
-            style: style_FixDistance_4_0,
+            dataVar: 'json_FixDistance_3',
+            layerName: 'layer_FixDistance_3',
+            pane: 'pane_FixDistance_3',
+            onEachFeature: pop_FixDistance_3,
+            style: style_FixDistance_3_0,
         });
-        bounds_group.addLayer(layer_FixDistance_4);
-        map.addLayer(layer_FixDistance_4);
+        bounds_group.addLayer(layer_FixDistance_3);
+        map.addLayer(layer_FixDistance_3);
+        function pop_LoadingPoint_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Easting</th>\
+                        <td>' + (feature.properties['x'] !== null ? autolinker.link(feature.properties['x'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Northing</th>\
+                        <td>' + (feature.properties['y'] !== null ? autolinker.link(feature.properties['y'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Elevation</th>\
+                        <td>' + (feature.properties['z'] !== null ? autolinker.link(feature.properties['z'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Request Level</th>\
+                        <td>' + (feature.properties['RL'] !== null ? autolinker.link(feature.properties['RL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Keterangan</th>\
+                        <td>' + (feature.properties['Keterangan'] !== null ? autolinker.link(feature.properties['Keterangan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nama Loeder</th>\
+                        <td>' + (feature.properties['HEX'] !== null ? autolinker.link(feature.properties['HEX'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lokasi Front</th>\
+                        <td>' + (feature.properties['Posisi'] !== null ? autolinker.link(feature.properties['Posisi'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lokasi Dumpingan</th>\
+                        <td>' + (feature.properties['Dumping'] !== null ? autolinker.link(feature.properties['Dumping'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Jarak Angkut</th>\
+                        <td>' + (feature.properties['Jarak'] !== null ? autolinker.link(feature.properties['Jarak'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Jenis Material</th>\
+                        <td>' + (feature.properties['Material'] !== null ? autolinker.link(feature.properties['Material'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_LoadingPoint_4_0(feature) {
+            switch(String(feature.properties['Keterangan'])) {
+                case 'Cut':
+                    return {
+                pane: 'pane_LoadingPoint_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Ongrade':
+                    return {
+                pane: 'pane_LoadingPoint_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,251,16,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Overcut':
+                    return {
+                pane: 'pane_LoadingPoint_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,26,28,1.0)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_LoadingPoint_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(146,225,117,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_LoadingPoint_4');
+        map.getPane('pane_LoadingPoint_4').style.zIndex = 404;
+        map.getPane('pane_LoadingPoint_4').style['mix-blend-mode'] = 'normal';
+        var layer_LoadingPoint_4 = new L.geoJson(json_LoadingPoint_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_LoadingPoint_4',
+            layerName: 'layer_LoadingPoint_4',
+            pane: 'pane_LoadingPoint_4',
+            onEachFeature: pop_LoadingPoint_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_LoadingPoint_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_LoadingPoint_4);
+        map.addLayer(layer_LoadingPoint_4);
         function pop_AktifitasSurveyW3_5(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -628,15 +644,15 @@
             };
             title.addTo(map);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'Design_Juli_r0<br /><table><tr><td style="text-align: center;"><img src="legend/Design_Juli_r0_6_Boundary0.png" /></td><td>Boundary</td></tr><tr><td style="text-align: center;"><img src="legend/Design_Juli_r0_6_Crest1.png" /></td><td>Crest</td></tr><tr><td style="text-align: center;"><img src="legend/Design_Juli_r0_6_Kaki2.png" /></td><td>Kaki</td></tr><tr><td style="text-align: center;"><img src="legend/Design_Juli_r0_6_RampJalan3.png" /></td><td>Ramp Jalan</td></tr><tr><td style="text-align: center;"><img src="legend/Design_Juli_r0_6_4.png" /></td><td></td></tr></table>': layer_Design_Juli_r0_6,'AktifitasSurveyW3<br /><table><tr><td style="text-align: center;"><img src="legend/AktifitasSurveyW3_5_Ongrade0.png" /></td><td>Ongrade</td></tr><tr><td style="text-align: center;"><img src="legend/AktifitasSurveyW3_5_Overcut1.png" /></td><td>Overcut</td></tr><tr><td style="text-align: center;"><img src="legend/AktifitasSurveyW3_5_2.png" /></td><td></td></tr></table>': layer_AktifitasSurveyW3_5,'FixDistance<br /><table><tr><td style="text-align: center;"><img src="legend/FixDistance_4_80.png" /></td><td><8%</td></tr><tr><td style="text-align: center;"><img src="legend/FixDistance_4_91.png" /></td><td>>9%</td></tr><tr><td style="text-align: center;"><img src="legend/FixDistance_4_892.png" /></td><td>8 - 9%</td></tr><tr><td style="text-align: center;"><img src="legend/FixDistance_4_3.png" /></td><td></td></tr></table>': layer_FixDistance_4,'Loading Point<br /><table><tr><td style="text-align: center;"><img src="legend/LoadingPoint_3_Cut0.png" /></td><td>Cut</td></tr><tr><td style="text-align: center;"><img src="legend/LoadingPoint_3_Ongrade1.png" /></td><td>Ongrade</td></tr><tr><td style="text-align: center;"><img src="legend/LoadingPoint_3_2.png" /></td><td></td></tr></table>': layer_LoadingPoint_3,'<img src="legend/LineJarak_2.png" /> Line Jarak': layer_LineJarak_2,"Orthophoto": layer_Orthophoto_1,"Google Satellite": layer_GoogleSatellite_0,}).addTo(map);
+        L.control.layers(baseMaps,{'Design_Juli_r0<br /><table><tr><td style="text-align: center;"><img src="legend/Design_Juli_r0_6_Boundary0.png" /></td><td>Boundary</td></tr><tr><td style="text-align: center;"><img src="legend/Design_Juli_r0_6_Crest1.png" /></td><td>Crest</td></tr><tr><td style="text-align: center;"><img src="legend/Design_Juli_r0_6_Kaki2.png" /></td><td>Kaki</td></tr><tr><td style="text-align: center;"><img src="legend/Design_Juli_r0_6_RampJalan3.png" /></td><td>Ramp Jalan</td></tr><tr><td style="text-align: center;"><img src="legend/Design_Juli_r0_6_4.png" /></td><td></td></tr></table>': layer_Design_Juli_r0_6,'AktifitasSurveyW3<br /><table><tr><td style="text-align: center;"><img src="legend/AktifitasSurveyW3_5_Ongrade0.png" /></td><td>Ongrade</td></tr><tr><td style="text-align: center;"><img src="legend/AktifitasSurveyW3_5_Overcut1.png" /></td><td>Overcut</td></tr><tr><td style="text-align: center;"><img src="legend/AktifitasSurveyW3_5_2.png" /></td><td></td></tr></table>': layer_AktifitasSurveyW3_5,'Loading Point<br /><table><tr><td style="text-align: center;"><img src="legend/LoadingPoint_4_Cut0.png" /></td><td>Cut</td></tr><tr><td style="text-align: center;"><img src="legend/LoadingPoint_4_Ongrade1.png" /></td><td>Ongrade</td></tr><tr><td style="text-align: center;"><img src="legend/LoadingPoint_4_Overcut2.png" /></td><td>Overcut</td></tr><tr><td style="text-align: center;"><img src="legend/LoadingPoint_4_3.png" /></td><td></td></tr></table>': layer_LoadingPoint_4,'FixDistance<br /><table><tr><td style="text-align: center;"><img src="legend/FixDistance_3_80.png" /></td><td><8%</td></tr><tr><td style="text-align: center;"><img src="legend/FixDistance_3_91.png" /></td><td>>9%</td></tr><tr><td style="text-align: center;"><img src="legend/FixDistance_3_892.png" /></td><td>8 - 9%</td></tr><tr><td style="text-align: center;"><img src="legend/FixDistance_3_3.png" /></td><td></td></tr></table>': layer_FixDistance_3,'<img src="legend/LineJarak_2.png" /> Line Jarak': layer_LineJarak_2,"Orthophoto": layer_Orthophoto_1,"Google Satellite": layer_GoogleSatellite_0,}).addTo(map);
         setBounds();
         var i = 0;
-        layer_LoadingPoint_3.eachLayer(function(layer) {
+        layer_LoadingPoint_4.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['HEX'] !== null?String('<div style="color: #000000; font-size: 10pt; font-weight: bold; font-family: \'Calibri\', sans-serif;">' + layer.feature.properties['HEX']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_LoadingPoint_3'});
+            layer.bindTooltip((layer.feature.properties['HEX'] !== null?String('<div style="color: #000000; font-size: 10pt; font-weight: bold; font-family: \'Calibri\', sans-serif;">' + layer.feature.properties['HEX']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_LoadingPoint_4'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
@@ -648,15 +664,15 @@
                 return this._bounds;
             }
         });
-        resetLabels([layer_LoadingPoint_3]);
+        resetLabels([layer_LoadingPoint_4]);
         map.on("zoomend", function(){
-            resetLabels([layer_LoadingPoint_3]);
+            resetLabels([layer_LoadingPoint_4]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_LoadingPoint_3]);
+            resetLabels([layer_LoadingPoint_4]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_LoadingPoint_3]);
+            resetLabels([layer_LoadingPoint_4]);
         });
         </script>
     </body>
